@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feliz Dia dos Namorados 💖</title>
+<style>
+  body {
+    margin: 0; padding: 0;
+    background: linear-gradient(#ffd6e7, #ffeaf5);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+  }
+  #containerFinal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    max-width: 90%;
+    flex-wrap: wrap;
+    display: none; /* começa oculto */
+    z-index: 15;
+  }
+  #fotoAmor {
+    width: 180px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(194,24,91,0.6);
+  }
+  #mensagem {
+    background: rgba(255,255,255,0.9);
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-size: 1.3em;
+    color: #c2185b;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    text-align: left;
+    max-width: 400px;
+  }
+  .gato {
+    position: fixed;
+    width: 90px;
+    animation: beijinho 5s ease-in-out forwards;
+    z-index: 10;
+  }
+  @keyframes beijinho {
+    0% {transform: scale(0) translateY(100vh); opacity: 0;}
+    50% {transform: scale(1.2) translateY(-30px); opacity: 1;}
+    100% {transform: scale(1) translateY(0); opacity: 1;}
+  }
+  #playButton {
+    padding: 15px 30px;
+    background-color: #c2185b;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(194,24,91,0.7);
+    transition: background-color 0.3s ease;
+    z-index: 30;
+  }
+  #playButton:hover {
+    background-color: #e91e63;
+  }
+  footer {
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9em;
+    color: #c2185b;
+    font-style: italic;
+    user-select: none;
+    pointer-events: none;
+    z-index: 40;
+  }
+</style>
+</head>
+<body>
+
+<button id="playButton">Toca aí ❤️</button>
+
+<audio id="audio" loop>
+  <source src="sorriso-resplandescente.mp3" type="audio/mpeg" />
+  Seu navegador não suporta o elemento de áudio.
+</audio>
+
+<div id="containerFinal">
+  <img src="meuamor.png" alt="Foto do meu amor" id="fotoAmor" />
+  <div id="mensagem">
+    oiiii amor da minha vida 💖 passando pra te desejar um feliz dia dos namorados 😍 eu te amo demais e sou grata por ter vc na minha vida 🥺❤️ vc é muito importante pra mim e amo fazer parte da sua vida ✨ te acho incrível e quer um spoiler? 👀 Vou me casar com você ainda homiii hahaha 💍 feliz nosso dia meu rei 👑 te amo demaisssss ❤️
+  </div>
+</div>
+
+<footer>Desenvolvido por Thais Lima</footer>
+
+<script>
+  const gatinhos = [
+    'https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif',
+    'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
+    'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
+  ];
+
+  const playButton = document.getElementById('playButton');
+  const audio = document.getElementById('audio');
+  const containerFinal = document.getElementById('containerFinal');
+
+  function soltaGatinhos() {
+    gatinhos.forEach((src, i) => {
+      setTimeout(() => {
+        const gato = document.createElement('img');
+        gato.src = src;
+        gato.classList.add('gato');
+        gato.style.left = `${15 + i * 30}%`;
+        gato.style.bottom = '10%';
+        document.body.appendChild(gato);
+
+        setTimeout(() => {
+          gato.remove();
+
+          if (i === gatinhos.length - 1) {
+            containerFinal.style.display = 'flex';
+          }
+        }, 5000);
+      }, i * 1200);
+    });
+  }
+
+  playButton.addEventListener('click', () => {
+    audio.play();
+    playButton.style.display = 'none';
+    soltaGatinhos();
+  });
+</script>
+
+</body>
+</html>
